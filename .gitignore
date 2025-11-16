@@ -1,0 +1,25 @@
+# --- Maven (Archivos compilados y logs) ---
+target/
+*.log
+
+# --- IntelliJ IDEA  ---
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# --- Eclipse / VS Code  ---
+.classpath
+.project
+.settings/
+.vscode/
+bin/
+
+# --- Archivos de Sistema Operativo ---
+.DS_Store
+Thumbs.db
+
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
