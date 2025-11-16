@@ -1,4 +1,9 @@
-FROM ubuntu:latest
-LABEL authors="danie"
+FROM eclipse-temurin:21-jdk
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-Dserver.port=8080", "-jar", "app.jar"]
