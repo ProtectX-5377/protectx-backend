@@ -37,14 +37,21 @@ public class UserController {
             return ResponseEntity.badRequest().body("El email ya existe");
         }
 
-        User newUser = User.builder()
-                .name(request.getName())
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .email(request.getEmail())
-                .build();
+        try {
+            User newUser = User.builder()
+                    .name(request.getName())
+                    .username(request.getUsername())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .email(request.getEmail())
+                    .build();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(newUser));
+            User savedUser = userRepository.save(newUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al guardar usuario: " + e.getMessage());
+        }
     }
 
     @PostMapping("/sign-in")
